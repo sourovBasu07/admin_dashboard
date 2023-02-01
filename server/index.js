@@ -44,6 +44,17 @@ app.use("/general", generalRoutes);
 app.use("/management", managementRoutes);
 app.use("/sales", salesRoutes);
 
+app.get("/*", function (req, res) {
+  res.sendFile(
+    path.join(__dirname, "../client/public/index.html"),
+    function (err) {
+      if (err) {
+        res.status(500).send(err);
+      }
+    }
+  );
+});
+
 // MONGOOSE SETUP
 const PORT = process.env.PORT || 9000;
 mongoose
